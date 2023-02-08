@@ -1,10 +1,10 @@
-#AirBnB clone - The console
+# AirBnB clone - The console
 
 Command line 'AirBnb clone' project which is the first step towards building first full web application.
 
 Uses python Cmd module to create the command line interpreter.
 
-##Usage
+## Usage
 	###### Must have
 	- python3 installed
 	
