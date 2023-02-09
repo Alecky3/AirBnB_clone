@@ -28,6 +28,8 @@ class BaseModel:
                         self.__dict__[key] = datetime.fromisoformat(value)
                     else:
                         self.__dict__[key] = value
+        else:
+            models.storage.new(self)
 
     def __str__(self):
         """Returns the string representation of this model class."""
