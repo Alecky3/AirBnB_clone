@@ -2,6 +2,7 @@
 """ Defines BaseModel class inherited by all other classes."""
 import uuid
 from datetime import datetime
+import models
 
 
 class BaseModel:
@@ -50,3 +51,9 @@ class BaseModel:
         ret["updated_at"] = self.updated_at.isoformat()
 
         return ret
+
+    def save(self):
+        """ Save this instance to file."""
+
+        self.updated_at = datetime.today()
+        models.storage.save()
