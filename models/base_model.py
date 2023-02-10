@@ -38,9 +38,12 @@ class BaseModel:
                 str(self.id), self.__dict__)
 
     def save(self):
-        """ Updates the public instance attribute 'updated_at'."""
+        """ Updates the public instance attribute 'updated_at'
+            and save it to file
+        """
 
         self.updated_at = datetime.today()
+        models.storage.save()
 
     def to_dict(self):
         """ Returns the dictionary containing all keys/values of dict
@@ -53,9 +56,3 @@ class BaseModel:
         ret["updated_at"] = self.updated_at.isoformat()
 
         return ret
-
-    def save(self):
-        """ Save this instance to file."""
-
-        self.updated_at = datetime.today()
-        models.storage.save()
