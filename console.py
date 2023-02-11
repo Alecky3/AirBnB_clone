@@ -167,7 +167,7 @@ def instancelist(arg=None):
         instancedict = models.storage.all()
         objs = [eval(value["__class__"])(**value) for key, value in instancedict.items()
                 if value["__class__"] in arg]
-        return [str[obj] for obj in objs]
+        return [str(obj) for obj in objs]
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
