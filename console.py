@@ -110,7 +110,6 @@ class HBNBCommand(cmd.Cmd):
                 return
             else:
                 attrname = parsed_args[3].replace("\"", "")
-                print("attrname: {}".format(attrname))
                 obj[parsed_args[2]] = attrname
                 models.storage.save()
 
