@@ -91,6 +91,10 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
+    def help_all(self):
+        print("Print a List of all instances or all [instance_name] instances\n\
+                Usage:\n{}\n'all'\n'all BaseModel'\n".format("="*40))
+
     def help_destroy(self):
         print("Destroys an instance of class with the given id\n\
                 Usage:\n{}\n'destroy [instanceid]'\n".format('='*40))
