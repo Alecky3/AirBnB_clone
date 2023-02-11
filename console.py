@@ -123,6 +123,11 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
+    def help_update(self):
+        print("""Update instance with the given attribute\n
+        Usage:\n{}\n'update BaseModel [instance_id] [attribute_name][attribute_value]'
+        \n""".format('='*40))
+
     def help_all(self):
         print("Print a List of all instances or all [instance_name] instances\n\
                 Usage:\n{}\n'all'\n'all BaseModel'\n".format("="*40))
