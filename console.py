@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_destroy(self):
         print("Destroys an instance of class with the given id\n\
-                Usage:\n{}\n'destroy [instanceid]'\n".format('='*40))
+                Usage:\n{}\n'destroy [instanceid_class_name] [instance_id]'\n".format('='*40))
 
     def help_show(self):
         print("Shows an instance with a given id\n\
