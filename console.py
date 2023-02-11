@@ -81,6 +81,38 @@ class HBNBCommand(cmd.Cmd):
             objs = instancelist()
             print(objs)
 
+    def do_update(self, args):
+        parsed_args = parseargs(args)
+
+        if not parsed_args:
+            print("** class name missing **")
+            return
+        if parsed_args[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+            return
+        if len(parsed_args) < 2:
+            print("** instance id missing **")
+            return
+        obj = models.storage.all().get("{}.{}".format(parsed_args[0],
+            parsed_args[1]))
+        if obj is None:
+            print("** no instance found **")
+            return
+        if len(parsed_args) < 3:
+            print("** attribute name missing **")
+            return
+        if len(parsed_args) < 4:
+            print("** value missing **")
+            return 
+        else:
+            if parsed_args[2] in ["id", "created_at", "updated_at"]:
+                return
+            else:
+                attrname = parsed_args[3].replace("\"", "")
+                print("attrname: {}".format(attrname))
+                obj[parsed_args[2]] = attrname
+                models.storage.save()
+
     def do_quit(self, arg):
         return True
 
