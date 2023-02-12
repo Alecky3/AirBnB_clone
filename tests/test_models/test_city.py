@@ -11,13 +11,13 @@ import os
 class TestCity(unittest.Testcase):
     """Represents City"""
 
-    def setup(self):
-        """SetUp method"""
+    def setUp(self):
+        """setUp method"""
 
         self.city = City()
 
-    def TearDown(self):
-        """TearDown method"""
+    def tearDown(self):
+        """tearDown method"""
 
         del self.city
 
