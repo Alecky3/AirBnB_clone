@@ -8,7 +8,7 @@ import models
 import os
 
 
-class TestAmenity(unittest.Testcase):
+class TestAmenity(unittest.TestCase):
     """represents Amenity"""
 
     def setUp(self):
