@@ -16,10 +16,10 @@ class HBNBCommand(cmd.Cmd):
     project.
     """
 
-    __classes = ["BaseModel", "User","State", "City", "Amenity",
-                "Place", "Review"]
+    __classes = ["BaseModel", "User", "State", "City", "Amenity",
+                 "Place", "Review"]
     prompt = "(hbnb) "
-    
+
     def do_create(self, args):
         parsed_args = parseargs(args)
         if not parsed_args:
@@ -100,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         obj = models.storage.all().get("{}.{}".format(parsed_args[0],
-            parsed_args[1]))
+                                                      parsed_args[1]))
         if obj is None:
             print("** no instance found **")
             return
@@ -109,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
             return
         if len(parsed_args) < 4:
             print("** value missing **")
-            return 
+            return
         else:
             if parsed_args[2] in ["id", "created_at", "updated_at"]:
                 return
@@ -130,20 +130,22 @@ class HBNBCommand(cmd.Cmd):
 
     def help_update(self):
         print("""Update instance with the given attribute\n
-        Usage:\n{}\n'update BaseModel [instance_id] [attribute_name][attribute_value]'
-        \n""".format('='*40))
+              Usage:\n{}\n'update BaseModel [instance_id] [attribute_name]
+              [attribute_value]'\n""".format('='*40))
 
     def help_all(self):
-        print("Print a List of all instances or all [instance_name] instances\n\
-                Usage:\n{}\n'all'\n'all BaseModel'\n".format("="*40))
+        print("""Print a List of all instances or all
+              [instance_name] instances\nUsage:\n{}\n'all'\n'
+              all BaseModel'\n""".format("="*40))
 
     def help_destroy(self):
-        print("Destroys an instance of class with the given id\n\
-                Usage:\n{}\n'destroy [instanceid_class_name] [instance_id]'\n".format('='*40))
+        print("Destroys an instance of class with the given id\n
+              Usage: \n{}\n'destroy instance_class_name instance_id
+              '\n".format('='*40))
 
     def help_show(self):
         print("Shows an instance with a given id\n\
-                Usage:\n{}\n'show BaseModel [instance_id]'\n".format('='*40))
+              Usage:\n{}\n'show BaseModel [instance_id]'\n".format('='*40))
 
     def help_create(self):
         print("create an object and save to JSON file\n\
@@ -155,23 +157,28 @@ class HBNBCommand(cmd.Cmd):
     def help_EOF(self):
         print("Quit command when end of file is encountered.\n")
 
+
 def parseargs(args):
     """ Parses arguments passed to command interpreter."""
-    
+
     return args.split()
 
-def instancelist(arg=None):
+
+def instancelist(arg = None):
     """ Constructs instances and returns them as list."""
 
     if arg is None:
-        instancedict = models.storage.all()
-        objs = [eval(value["__class__"])(**value) for key, value in instancedict.items()]
+        instancedict=models.storage.all()
+        objs=[eval(value["__class__"])(**value) for key, value in
+                instancedict.items()]
         return [str(obj) for obj in objs]
     else:
         instancedict = models.storage.all()
-        objs = [eval(value["__class__"])(**value) for key, value in instancedict.items()
-                if value["__class__"] in arg]
+        objs = [eval(value["__class__"])(**value)
+                for key, value in instancedict.items()
+                 if value["__class__"] in arg]
         return [str(obj) for obj in objs]
 
-if __name__ == "__main__":
+
+if __name__ == "__main__" :
     HBNBCommand().cmdloop()

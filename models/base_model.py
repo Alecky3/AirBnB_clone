@@ -8,7 +8,7 @@ import models
 class BaseModel:
     """ Represents 'BaseModel' which defines all common
     attributes/methods for other classes."""
-    
+
     def __init__(self, *args, **kwargs):
         """ Initializes the class with three instance atttributes
         Args:
@@ -21,7 +21,7 @@ class BaseModel:
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
 
-        if kwargs is not None and  kwargs != {}:
+        if kwargs is not None and kwargs != {}:
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key == "created_at" or key == "updated_at":
@@ -35,7 +35,7 @@ class BaseModel:
         """Returns the string representation of this model class."""
 
         return "[{}] ({}) {}".format(self.__class__.__name__,
-                str(self.id), self.__dict__)
+                                     str(self.id), self.__dict__)
 
     def save(self):
         """ Updates the public instance attribute 'updated_at'
