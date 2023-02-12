@@ -11,13 +11,13 @@ import os
 class TestPlace(unittest.TestCase):
     """represents Place"""
 
-    def setup(self):
+    def setUp(self):
         """SetUp method"""
 
         self.place = Place()
 
-    def TearDown(self):
-        """TearDown method"""
+    def tearDown(self):
+        """tearDown method"""
 
         del self.place
 
