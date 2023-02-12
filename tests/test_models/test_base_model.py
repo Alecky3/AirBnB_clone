@@ -68,7 +68,7 @@ class TestBaseModel(unittest.TestCase):
         """test type object"""
 
         self.assertEqual(
-            str(type(self.base_mode)),
+            str(type(self.base_model)),
             "<class 'models. base_model.BaseModel'>")
         self.assertIsInstance(self.base_model, BaseModel)
 
