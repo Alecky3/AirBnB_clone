@@ -8,7 +8,7 @@ import models
 import os
 
 
-class TestCity(unittest.Testcase):
+class TestCity(unittest.TestCase):
     """Represents City"""
 
     def setUp(self):

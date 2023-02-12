@@ -33,7 +33,7 @@ class TestPlace(unittest.TestCase):
     def test_permissions_file(self):
 
         test_file = os.access("models/place.py", os.R_OK)
-        self.asserTrue(test_file, "Read permissions")
+        self.assertTrue(test_file, "Read permissions")
         test_file = os.access("models/place.py", os.W_OK)
         self.assertTrue(test_file, "Write permissions")
         test_file = os.access("models/place.py", os.X_OK)
