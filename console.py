@@ -139,9 +139,9 @@ class HBNBCommand(cmd.Cmd):
               all BaseModel'\n""".format("="*40))
 
     def help_destroy(self):
-        print("Destroys an instance of class with the given id\n
+        print("""Destroys an instance of class with the given id\n
               Usage: \n{}\n'destroy instance_class_name instance_id
-              '\n".format('='*40))
+              '\n""".format('='*40))
 
     def help_show(self):
         print("Shows an instance with a given id\n\
@@ -164,21 +164,21 @@ def parseargs(args):
     return args.split()
 
 
-def instancelist(arg = None):
+def instancelist(arg=None):
     """ Constructs instances and returns them as list."""
 
     if arg is None:
-        instancedict=models.storage.all()
-        objs=[eval(value["__class__"])(**value) for key, value in
+        instancedict = models.storage.all()
+        objs = [eval(value["__class__"])(**value) for key, value in
                 instancedict.items()]
         return [str(obj) for obj in objs]
     else:
         instancedict = models.storage.all()
         objs = [eval(value["__class__"])(**value)
                 for key, value in instancedict.items()
-                 if value["__class__"] in arg]
+                if value["__class__"] in arg]
         return [str(obj) for obj in objs]
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
