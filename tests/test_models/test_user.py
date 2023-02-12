@@ -8,7 +8,7 @@ import models
 import os
 
 
-class TestUser(unittest.Testcase):
+class TestUser(unittest.TestCase):
     """Represents a User"""
 
     def setUp(self):
