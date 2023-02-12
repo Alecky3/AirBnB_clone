@@ -69,7 +69,7 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertEqual(
             str(type(self.base_model)),
-            "<class 'models. base_model.BaseModel'>")
+            "<class 'models.base_model.BaseModel'>")
         self.assertIsInstance(self.base_model, BaseModel)
 
     def test_str_representation(self):
