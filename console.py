@@ -20,6 +20,18 @@ class HBNBCommand(cmd.Cmd):
                  "Place", "Review"]
     prompt = "(hbnb) "
 
+    def default(self, args):
+        args_list = args.split(".")
+        if len(args_list) < 2 or not args_list[1]:
+            print("*** unknown syntax: {}".format(args))
+            return False
+        else:
+            instancedict = models.storage.all()
+            objs = [str(eval(value["__class__"])(**value))
+                    for key, value in instancedict.items()
+                    if value["__class__"] == args_list[0]]
+        print(objs)
+
     def do_create(self, args):
         parsed_args = parseargs(args)
         if not parsed_args:
