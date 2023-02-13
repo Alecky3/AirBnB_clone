@@ -35,7 +35,17 @@ class HBNBCommand(cmd.Cmd):
             elif args_list[1] == "count()":
                 print(len(objs))
             elif args_list[1].startswith("show"):
-                pass
+                parsed_args = args_list[1].split('"')
+                if len(parsed_args) < 2:
+                    print("** instance id missing **")
+                else:
+                    s = models.storage
+                    b = s.all().get("{}.{}".format(args_list[0], parsed_args[1]))
+                    if b is None:
+                        print("** no instance found**")
+                    else:
+                        obj = eval(args_list[0])(**b)
+                        print(str(obj))
 
     def do_create(self, args):
         parsed_args = parseargs(args)
