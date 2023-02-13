@@ -30,7 +30,12 @@ class HBNBCommand(cmd.Cmd):
             objs = [str(eval(value["__class__"])(**value))
                     for key, value in instancedict.items()
                     if value["__class__"] == args_list[0]]
-        print(objs)
+            if args_list[1] == "all()":
+                print(objs)
+            elif args_list[1] == "count()":
+                print(len(objs))
+            elif args_list[1].startswith("show"):
+                pass
 
     def do_create(self, args):
         parsed_args = parseargs(args)
@@ -62,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
             if b is None:
                 print("** no instance found**")
             else:
-                print(b.get("id"))
+                print(eval(parsed_args[0])(**b))
 
     def do_destroy(self, args):
         parsed_args = parseargs(args)
