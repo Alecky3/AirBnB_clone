@@ -40,7 +40,8 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
                 else:
                     s = models.storage
-                    b = s.all().get("{}.{}".format(args_list[0], parsed_args[1]))
+                    b = s.all().get("{}.{}".format(args_list[0],
+                                                   parsed_args[1]))
                     if b is None:
                         print("** no instance found**")
                     else:
@@ -53,19 +54,21 @@ class HBNBCommand(cmd.Cmd):
                     return
                 else:
                     s = models.storage
-                    b = s.all().get("{}.{}".format(args_list[0], parsed_args[1]))
+                    b = s.all().get("{}.{}".format(args_list[0],
+                                                   parsed_args[1]))
                     if b is None:
                         print("** no instance found **")
                         return
                     else:
-                        del s.all()["{}.{}".format(args_list[0], parsed_args[1])]
+                        del s.all()["{}.{}".format(args_list[0],
+                                                   parsed_args[1])]
             elif args_list[1].startswith("update"):
                 parsed_args = args_list[1].split('"')
                 if len(parsed_args) < 2:
                     print("** instance id missing **")
                     return
                 obj = models.storage.all().get("{}.{}".format(args_list[0],
-                                                      parsed_args[1]))
+                                                              parsed_args[1]))
                 if obj is None:
                     print("** no instance found **")
                     return
