@@ -59,7 +59,29 @@ class HBNBCommand(cmd.Cmd):
                         return
                     else:
                         del s.all()["{}.{}".format(args_list[0], parsed_args[1])]
-
+            elif args_list[1].startswith("update"):
+                parsed_args = args_list[1].split('"')
+                if len(parsed_args) < 2:
+                    print("** instance id missing **")
+                    return
+                obj = models.storage.all().get("{}.{}".format(args_list[0],
+                                                      parsed_args[1]))
+                if obj is None:
+                    print("** no instance found **")
+                    return
+                if len(parsed_args) < 4:
+                    print("** attribute name missing **")
+                    return
+                if len(parsed_args) < 6:
+                    print("** value missing **")
+                    return
+                else:
+                    if parsed_args[4] in ["id", "created_at", "updated_at"]:
+                        return
+                    else:
+                        attrname = parsed_args[3]
+                        obj[attrname] = parsed_args[5]
+                        models.storage.save()
 
     def do_create(self, args):
         parsed_args = parseargs(args)
