@@ -20,6 +20,69 @@ class HBNBCommand(cmd.Cmd):
                  "Place", "Review"]
     prompt = "(hbnb) "
 
+    def default(self, args):
+        args_list = args.split(".")
+        if len(args_list) < 2 or not args_list[1]:
+            print("*** unknown syntax: {}".format(args))
+            return False
+        else:
+            instancedict = models.storage.all()
+            objs = [str(eval(value["__class__"])(**value))
+                    for key, value in instancedict.items()
+                    if value["__class__"] == args_list[0]]
+            if args_list[1] == "all()":
+                print(objs)
+            elif args_list[1] == "count()":
+                print(len(objs))
+            elif args_list[1].startswith("show"):
+                parsed_args = args_list[1].split('"')
+                if len(parsed_args) < 2:
+                    print("** instance id missing **")
+                else:
+                    s = models.storage
+                    b = s.all().get("{}.{}".format(args_list[0], parsed_args[1]))
+                    if b is None:
+                        print("** no instance found**")
+                    else:
+                        obj = eval(args_list[0])(**b)
+                        print(str(obj))
+            elif args_list[1].startswith("destroy"):
+                parsed_args = args_list[1].split('"')
+                if len(parsed_args) < 2:
+                    print("** instance id missing **")
+                    return
+                else:
+                    s = models.storage
+                    b = s.all().get("{}.{}".format(args_list[0], parsed_args[1]))
+                    if b is None:
+                        print("** no instance found **")
+                        return
+                    else:
+                        del s.all()["{}.{}".format(args_list[0], parsed_args[1])]
+            elif args_list[1].startswith("update"):
+                parsed_args = args_list[1].split('"')
+                if len(parsed_args) < 2:
+                    print("** instance id missing **")
+                    return
+                obj = models.storage.all().get("{}.{}".format(args_list[0],
+                                                      parsed_args[1]))
+                if obj is None:
+                    print("** no instance found **")
+                    return
+                if len(parsed_args) < 4:
+                    print("** attribute name missing **")
+                    return
+                if len(parsed_args) < 6:
+                    print("** value missing **")
+                    return
+                else:
+                    if parsed_args[4] in ["id", "created_at", "updated_at"]:
+                        return
+                    else:
+                        attrname = parsed_args[3]
+                        obj[attrname] = parsed_args[5]
+                        models.storage.save()
+
     def do_create(self, args):
         parsed_args = parseargs(args)
         if not parsed_args:
@@ -50,7 +113,7 @@ class HBNBCommand(cmd.Cmd):
             if b is None:
                 print("** no instance found**")
             else:
-                print(b.get("id"))
+                print(eval(parsed_args[0])(**b))
 
     def do_destroy(self, args):
         parsed_args = parseargs(args)
