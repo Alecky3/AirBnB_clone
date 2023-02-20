@@ -1,6 +1,8 @@
 .places .places-title {
 	text-align: left;
 	font-size: 30px;
+	margin: 0;
+	padding-top: 20px;
 }
 
 .places .places-content{
