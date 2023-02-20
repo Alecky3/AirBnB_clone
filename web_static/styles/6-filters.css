@@ -52,6 +52,9 @@
 	font-size: 14px;
 	padding: 0;
 	margin: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .filters .locations {
